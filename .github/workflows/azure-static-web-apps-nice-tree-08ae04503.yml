@@ -36,7 +36,8 @@ jobs:
         id: clean
         uses: docker://alpine
         with:
-          args: /bin/sh -c "rm -rf $GITHUB_WORKSPACE"
+          args: /bin/sh -c "rm -rf /github/workspace/.* || rm -rf /github/workspace/*"
+          #args: /bin/sh -c "rm -rf $GITHUB_WORKSPACE"
           
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
